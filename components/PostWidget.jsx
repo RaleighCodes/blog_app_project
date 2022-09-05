@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {getRecentPosts, getSimilarPosts} from '../services';
 
 const PostWidget = ({categories, slug}) => {
+
   const [relatedPosts, setRelatedPosts] = useState([]);
 
   useEffect(() => {
@@ -33,7 +34,14 @@ const PostWidget = ({categories, slug}) => {
               src={post.featuredImage.url}
             />
           </div>
-
+          <div className='flex-growth ml-4'>
+            <p className='text-gray-500 font-xs'>
+              {moment(post.createdAt).format('MM-DD-YYYY')}
+            </p>
+            <Link href={`/post/${post.slug}`} key={post.title} className='text.md'>
+              {post.title}
+            </Link>
+          </div>
         </div>
       ))}
     </div>
